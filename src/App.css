@@ -1,38 +1,53 @@
-.App {
-  text-align: center;
+@import "https://use.fontawesome.com/releases/v5.5.0/css/all.css";
+
+.btn
+{
+    width: 293px;
+    height: 63px;
+    left: 726px;
+    top: 267px;
+    border: 0;
+    
+    background: #50AD55;
+    border-radius: 6px;
+
+    cursor: pointer;   
+    margin-bottom: 7px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.btn span
+{
+    margin-bottom: 100px;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 20px;
+    /* identical to box height, or 83% */
+    
+    text-align: center;
+    
+    color: #FFFFFF;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+img
+{
+    width: 30px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.alignbtn
+{
+    text-align: center;
 }
 
-.App-link {
-  color: #61dafb;
+.imagechat
+{
+    float: right;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.imagechat img
+{
+    width: 100px;
+    height: 76px;
+    margin-top: 50px;
+    margin-right: 100px;
 }
