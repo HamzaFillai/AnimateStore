@@ -29,6 +29,35 @@
     color: #FFFFFF;
 }
 
+.btnh
+{
+    width: 293px;
+    height: 63px;
+    left: 726px;
+    top: 267px;
+    border: 0;
+    
+    background: #50AD55;
+    border-radius: 6px;
+
+    cursor: pointer;   
+    margin-bottom: 7px;
+}
+
+.btnh span
+{
+    margin-bottom: 100px;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 20px;
+    /* identical to box height, or 83% */
+    
+    text-align: center;
+    
+    color: #FFFFFF;
+}
+
 img
 {
     width: 30px;

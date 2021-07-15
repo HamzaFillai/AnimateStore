@@ -8,24 +8,21 @@ import 'animate.css'
 
 function App() {
 
-  let elementbtn = document.getElementById("btn");
-  console.log(document.getElementById("btn"));
-  /*document.querySelector(".btn").addEventListener('animationend', () => {
-    console.log("OK");
-  });*/
+  
+  
 
   //Select Handlers
   const [selected, setSelected] = useState('bounce');
+
+  const selecan="btnh animate__animated animate__"+selected
 
   const handleSelectChange = useCallback((value) =>
   setSelected(value),
    []);
    
    console.log(selected);
-   elementbtn.classList.add("animate__animated", "animate__"+selected);
 
   const options = [
-    {label: 'Select animation', value: 'selectanim'},
     {label: 'Bounce', value: 'bounce'},
     {label: 'Flash', value: 'flash'},
     {label: 'Pulse', value: 'pulse'},
@@ -43,23 +40,32 @@ function App() {
   //Select Handlers
 
   //RadioButton Handlers
-    const [value, setValue] = useState('hover');
+    const [value, setValue] = useState('always');
   
     const handleChange = useCallback(
       (_checked, newValue) => setValue(newValue),
       [],
     );
+
+    const handleHover=()=>{
+      if(value==='hover'){
+        
+      }
+    }
   //RadioButton Handlers
 
   //
 
   //SpeedSlider Handlers
-    const [speedValue, setSpeedValue] = useState(32);
+    const [speedValue, setSpeedValue] = useState(5);
+
+    const realValue=speedValue/10+'s'
 
     const handleSpeedSliderChange = useCallback(
       (value) => setSpeedValue(value),
       [],
     );
+
   //SpeedSlider Handlers
 
   return (
@@ -96,6 +102,8 @@ function App() {
               <Card.Section title="speed of the animation">
                 <RangeSlider
                   value={speedValue}
+                  min={0}
+                  max={50}
                   onChange={handleSpeedSliderChange}
                   output
                 />
@@ -108,7 +116,7 @@ function App() {
                   <TextContainer>
                     <SkeletonDisplayText size="extraLarge" />
                     <div className="alignbtn">
-                      <button id="btn" className=" btn"><img src={Vector}/> <span>ADD TO CART</span></button>
+                      <button className={selecan} style={{animationDuration:realValue}} onMouseEnter={handleHover}><img src={Vector}/> <span>ADD TO CART</span></button>
                     </div>
                     <SkeletonBodyText lines={1}/>
                     <SkeletonBodyText lines={1}/>
