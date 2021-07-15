@@ -136,9 +136,6 @@ if(value==='always'){
           </Layout.Section>
       </Layout>
      </Page>
-     <div className="imagechat">
-      <img src={chat}/>
-     </div>
     </div>
   );
 }
