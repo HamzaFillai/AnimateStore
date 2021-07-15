@@ -5,24 +5,21 @@ import Publish from "./Publish"
 import Vector from "./Vector.png"
 import chat from "./chat.png"
 import 'animate.css'
+import React from 'react';
 
 function App() {
 
-  let elementbtn = document.getElementById("btn");
-  console.log(document.getElementById("btn"));
-  /*document.querySelector(".btn").addEventListener('animationend', () => {
-    console.log("OK");
-  });*/
 
   //Select Handlers
-  const [selected, setSelected] = useState('bounce');
+  const [selected, setSelected] = useState('Select animation');
 
   const handleSelectChange = useCallback((value) =>
   setSelected(value),
-   []);
-   
-   console.log(selected);
-   elementbtn.classList.add("animate__animated", "animate__"+selected);
+  []);
+
+  var classbutton ="btn";
+
+  console.log(document.getElementById("eltbtn"));
 
   const options = [
     {label: 'Select animation', value: 'selectanim'},
@@ -54,13 +51,25 @@ function App() {
   //
 
   //SpeedSlider Handlers
-    const [speedValue, setSpeedValue] = useState(32);
+  const [speedValue, setSpeedValue] = useState(5);
 
-    const handleSpeedSliderChange = useCallback(
-      (value) => setSpeedValue(value),
-      [],
-    );
-  //SpeedSlider Handlers
+  const realValue=speedValue/10+'s'
+
+  const handleSpeedSliderChange = useCallback(
+    (value) => setSpeedValue(value),
+    [],
+  );
+
+//SpeedSlider Handlers
+
+
+const handleHover=()=>{
+  document.getElementById("eltbtn").className="btn animate__animated animate__"+selected;
+}
+
+if(value==='always'){
+  classbutton = "btn animate__animated animate__"+selected;
+}
 
   return (
     <div className="App">
@@ -103,12 +112,12 @@ function App() {
             </Card>
           </Layout.Section>
           <Layout.Section twoThird>
-                <Card title={<Publish />} sectioned actions={[{content: <Button primary>Save</Button>}]}></Card>
+                <Card title={<Publish />} sectioned actions={[{content: <React.Fragment><Button primary>Save</Button></React.Fragment>}]}></Card>
                 <Card sectioned title="Preview">
                   <TextContainer>
                     <SkeletonDisplayText size="extraLarge" />
                     <div className="alignbtn">
-                      <button id="btn" className=" btn"><img src={Vector}/> <span>ADD TO CART</span></button>
+                      <button id="eltbtn" className={classbutton}  style={{animationDuration:realValue}} onMouseEnter={handleHover}><img src={Vector}/> <span>ADD TO CART</span></button>
                     </div>
                     <SkeletonBodyText lines={1}/>
                     <SkeletonBodyText lines={1}/>
