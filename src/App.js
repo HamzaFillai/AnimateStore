@@ -129,7 +129,7 @@ if(value==='always'){
           <Layout.Section>
             <FooterHelp>
               Learn more about{' '}
-              <Link external url="https://help.shopify.com/manual/orders/fulfill-orders">
+              <Link external url="https://animate.style/">
                 Cart Animator
               </Link>
             </FooterHelp>
