@@ -3,12 +3,11 @@ import {useState,useCallback} from 'react'
 import {Button, Card, Layout,Page,FooterHelp,Link, Select,Stack,RadioButton,TextContainer, RangeSlider, Heading , SkeletonDisplayText , SkeletonBodyText} from '@shopify/polaris';
 import Publish from "./Publish"
 import Vector from "./Vector.png"
-import chat from "./chat.png"
 import 'animate.css'
 import React from 'react';
 
 function App() {
-
+  var classbutton ="btn";
 
   //Select Handlers
   const [selected, setSelected] = useState('Select animation');
@@ -16,8 +15,6 @@ function App() {
   const handleSelectChange = useCallback((value) =>
   setSelected(value),
   []);
-
-  var classbutton ="btn";
 
   console.log(document.getElementById("eltbtn"));
 
@@ -53,7 +50,7 @@ function App() {
   //SpeedSlider Handlers
   const [speedValue, setSpeedValue] = useState(5);
 
-  const realValue=speedValue/10+'s'
+  const realValue=speedValue/10+'s';
 
   const handleSpeedSliderChange = useCallback(
     (value) => setSpeedValue(value),
@@ -136,9 +133,6 @@ if(value==='always'){
           </Layout.Section>
       </Layout>
      </Page>
-     <div className="imagechat">
-      <img src={chat}/>
-     </div>
     </div>
   );
 }
