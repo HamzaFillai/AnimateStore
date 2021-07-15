@@ -2,20 +2,16 @@ import React from 'react'
 import "./Publish.css"
 export default function Publish() {
 
-    var pub = document.getElementById("pub");
+    var pub = "pub";
     const myToggel = ()=>{
-        try{
-            
-            if(pub.innerHTML==="Unpublished")
+            if(document.getElementById(pub).innerHTML==="Unpublished")
             {
-                pub.innerHTML="Publish"
+                document.getElementById(pub).innerHTML="Publish"
             }
             else
             {
-                pub.innerHTML="Unpublished"
+                document.getElementById(pub).innerHTML="Unpublished"
             }
-        }
-        catch(err){}
     }
 
     return (
@@ -27,7 +23,7 @@ export default function Publish() {
                         <input onClick={myToggel} type="checkbox" />
                         <span className="slider round"></span>
                     </label>
-                    <p id="pub">Unpublished</p>
+                    <p id={pub}>Unpublished</p>
                     </div>
                 </div>
             </div>
