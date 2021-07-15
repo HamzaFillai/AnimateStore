@@ -1,5 +1,5 @@
 @import "https://use.fontawesome.com/releases/v5.5.0/css/all.css";
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@00&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
 
 .component2 > .dis > .published >.switch {
   position: relative;

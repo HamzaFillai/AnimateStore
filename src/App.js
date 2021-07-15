@@ -8,6 +8,8 @@ import 'animate.css'
 
 function App() {
 
+  let elementbtn = document.getElementById("btn");
+  console.log(document.getElementById("btn"));
   /*document.querySelector(".btn").addEventListener('animationend', () => {
     console.log("OK");
   });*/
@@ -16,23 +18,26 @@ function App() {
   const [selected, setSelected] = useState('bounce');
 
   const handleSelectChange = useCallback((value) =>
-    
-  document.getElementById("button").classList.add("animate__animated", "animate__"+value),
+  setSelected(value),
    []);
+   
+   console.log(selected);
+   elementbtn.classList.add("animate__animated", "animate__"+selected);
 
   const options = [
-    {label: 'bounce', value: 'bounce'},
-    {label: 'flash', value: 'flash'},
-    {label: 'pulse', value: 'pulse'},
-    {label: 'rubberBand', value: 'rubberBand'},
-    {label: 'shakeX', value: 'shakeX'},
-    {label: 'shakeY', value: 'shakeY'},
-    {label: 'headShake', value: 'headShake'},
-    {label: 'swing', value: 'swing'},
-    {label: 'tada', value: 'tada'},
-    {label: 'wobble', value: 'wobble'},
-    {label: 'jello', value: 'jello'},
-    {label: 'heartBeat', value: 'heartBeat'},
+    {label: 'Select animation', value: 'selectanim'},
+    {label: 'Bounce', value: 'bounce'},
+    {label: 'Flash', value: 'flash'},
+    {label: 'Pulse', value: 'pulse'},
+    {label: 'RubberBand', value: 'rubberBand'},
+    {label: 'ShakeX', value: 'shakeX'},
+    {label: 'ShakeY', value: 'shakeY'},
+    {label: 'HeadShake', value: 'headShake'},
+    {label: 'Swing', value: 'swing'},
+    {label: 'Tada', value: 'tada'},
+    {label: 'Wobble', value: 'wobble'},
+    {label: 'Jello', value: 'jello'},
+    {label: 'HeartBeat', value: 'heartBeat'},
   ];
 
   //Select Handlers
@@ -65,7 +70,7 @@ function App() {
             <Card title="Visual Settings" sectioned>
               <Card.Section>
                 <Select
-                  label="Date range"
+                  label="Animations"
                   options={options}
                   onChange={handleSelectChange}
                   value={selected}
@@ -103,7 +108,7 @@ function App() {
                   <TextContainer>
                     <SkeletonDisplayText size="extraLarge" />
                     <div className="alignbtn">
-                      <button id="button" className=" btn"><img src={Vector}/> <span>ADD TO CART</span></button>
+                      <button id="btn" className=" btn"><img src={Vector}/> <span>ADD TO CART</span></button>
                     </div>
                     <SkeletonBodyText lines={1}/>
                     <SkeletonBodyText lines={1}/>
