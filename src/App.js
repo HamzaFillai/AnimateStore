@@ -4,18 +4,35 @@ import {Button, Card, Layout,Page,FooterHelp,Link, Select,Stack,RadioButton,Text
 import Publish from "./Publish"
 import Vector from "./Vector.png"
 import chat from "./chat.png"
+import 'animate.css'
 
 function App() {
+
+  /*document.querySelector(".btn").addEventListener('animationend', () => {
+    console.log("OK");
+  });*/
 
   //Select Handlers
   const [selected, setSelected] = useState('bounce');
 
-  const handleSelectChange = useCallback((value) => setSelected(value), []);
+  const handleSelectChange = useCallback((value) =>
+    
+  document.getElementById("button").classList.add("animate__animated", "animate__"+value),
+   []);
 
   const options = [
     {label: 'bounce', value: 'bounce'},
     {label: 'flash', value: 'flash'},
     {label: 'pulse', value: 'pulse'},
+    {label: 'rubberBand', value: 'rubberBand'},
+    {label: 'shakeX', value: 'shakeX'},
+    {label: 'shakeY', value: 'shakeY'},
+    {label: 'headShake', value: 'headShake'},
+    {label: 'swing', value: 'swing'},
+    {label: 'tada', value: 'tada'},
+    {label: 'wobble', value: 'wobble'},
+    {label: 'jello', value: 'jello'},
+    {label: 'heartBeat', value: 'heartBeat'},
   ];
 
   //Select Handlers
@@ -48,7 +65,7 @@ function App() {
             <Card title="Visual Settings" sectioned>
               <Card.Section>
                 <Select
-                  label="Animations"
+                  label="Date range"
                   options={options}
                   onChange={handleSelectChange}
                   value={selected}
@@ -86,7 +103,7 @@ function App() {
                   <TextContainer>
                     <SkeletonDisplayText size="extraLarge" />
                     <div className="alignbtn">
-                      <button className="btn"><img src={Vector}/> <span>ADD TO CART</span></button>
+                      <button id="button" className=" btn"><img src={Vector}/> <span>ADD TO CART</span></button>
                     </div>
                     <SkeletonBodyText lines={1}/>
                     <SkeletonBodyText lines={1}/>
@@ -104,7 +121,6 @@ function App() {
             </FooterHelp>
           </Layout.Section>
       </Layout>
-      
      </Page>
      <div className="imagechat">
       <img src={chat}/>
