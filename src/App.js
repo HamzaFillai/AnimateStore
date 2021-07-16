@@ -1,25 +1,29 @@
 import './App.css';
 import {useState,useCallback} from 'react'
-import {Button, Card, Layout,Page,FooterHelp,Link, Select,Stack,RadioButton,TextContainer, RangeSlider, Heading , SkeletonDisplayText , SkeletonBodyText} from '@shopify/polaris';
+import {Button, Card, Layout,Page,FooterHelp,Link, Select,Stack,RadioButton,TextContainer, RangeSlider, Heading , SkeletonDisplayText , SkeletonBodyText,Toast,Frame} from '@shopify/polaris';
 import Publish from "./Publish"
 import Vector from "./Vector.png"
 import 'animate.css'
 import React from 'react';
 
 function App() {
-  var classbutton ="btn";
+
 
   //Select Handlers
-  const [selected, setSelected] = useState('Select animation');
+  const [selected, setSelected] = useState('bounce');
 
   const handleSelectChange = useCallback((value) =>
   setSelected(value),
   []);
 
+  var classbutton ="btn";
+
   console.log(document.getElementById("eltbtn"));
 
+ 
+
   const options = [
-    {label: 'Select animation', value: 'selectanim'},
+    //{label: 'Select animation', value: 'selectanim'},
     {label: 'Bounce', value: 'bounce'},
     {label: 'Flash', value: 'flash'},
     {label: 'Pulse', value: 'pulse'},
@@ -50,7 +54,7 @@ function App() {
   //SpeedSlider Handlers
   const [speedValue, setSpeedValue] = useState(5);
 
-  const realValue=speedValue/10+'s';
+  const realValue=speedValue/10+'s'
 
   const handleSpeedSliderChange = useCallback(
     (value) => setSpeedValue(value),
@@ -59,17 +63,60 @@ function App() {
 
 //SpeedSlider Handlers
 
+//SaveButtonHandlers
+const [active, setActive] = useState(false);
+
+  const toggleActive = useCallback(() => setActive((active) => !active), []);
+
+  const toastMarkup = active ? (
+    <Toast content="Save Settings" onDismiss={toggleActive} />
+  ) : null;
+//SaveButtonHandlers
+
+const animateCSS = (element, animation, prefix = 'animate__') =>
+  // We create a Promise and return it
+  new Promise((resolve, reject) => {
+    const animationName = `${prefix}${animation}`;
+    const node = document.querySelector(element);
+
+    node.classList.add(`${prefix}animated`, animationName);
+
+    // When the animation ends, we clean the classes and resolve the Promise
+    function handleAnimationEnd(event) {
+      event.stopPropagation();
+      node.classList.remove(`${prefix}animated`, animationName);
+      resolve('Animation ended');
+    }
+
+    node.addEventListener('animationend', handleAnimationEnd, {once: true});
+  });
+
+  var animateinfinite = "";
 
 const handleHover=()=>{
-  document.getElementById("eltbtn").className="btn animate__animated animate__"+selected;
+  if(value==='hover'){
+    animateCSS('.btn', selected);
+  }
 }
 
 if(value==='always'){
-  classbutton = "btn animate__animated animate__"+selected;
+  animateCSS('.btn', selected);
+  document.getElementById("eltbtn").classList.add("anim");
 }
+else
+{
+  
+    try
+    {
+      document.getElementById("eltbtn").classList.remove("anim");
+    }catch(err){}
+}
+
+
 
   return (
     <div className="App">
+     <Frame>
      <Page>
      <Layout>
           <Layout.Section oneThird>
@@ -79,6 +126,7 @@ if(value==='always'){
                   label="Animations"
                   options={options}
                   onChange={handleSelectChange}
+                  onMouseEnter={()=>console.log("e")}
                   value={selected}
                 />
               </Card.Section>
@@ -109,12 +157,12 @@ if(value==='always'){
             </Card>
           </Layout.Section>
           <Layout.Section twoThird>
-                <Card title={<Publish />} sectioned actions={[{content: <React.Fragment><Button primary>Save</Button></React.Fragment>}]}></Card>
+                <Card title={<Publish />} sectioned actions={[{content: <React.Fragment><Button onClick={toggleActive} primary>Save</Button></React.Fragment>}]}></Card>
                 <Card sectioned title="Preview">
                   <TextContainer>
                     <SkeletonDisplayText size="extraLarge" />
                     <div className="alignbtn">
-                      <button id="eltbtn" className={classbutton}  style={{animationDuration:realValue}} onMouseEnter={handleHover}><img src={Vector}/> <span>ADD TO CART</span></button>
+                      <button id="eltbtn" className={classbutton}  style={{animationDuration:realValue }} onMouseEnter={handleHover}><img src={Vector}/> <span>ADD TO CART</span></button>
                     </div>
                     <SkeletonBodyText lines={1}/>
                     <SkeletonBodyText lines={1}/>
@@ -131,8 +179,10 @@ if(value==='always'){
               </Link>
             </FooterHelp>
           </Layout.Section>
+          {toastMarkup}
       </Layout>
      </Page>
+     </Frame>
     </div>
   );
 }

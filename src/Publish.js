@@ -6,7 +6,7 @@ export default function Publish() {
     const myToggel = ()=>{
             if(document.getElementById(pub).innerHTML==="Unpublished")
             {
-                document.getElementById(pub).innerHTML="Publish"
+                document.getElementById(pub).innerHTML="Published"
             }
             else
             {
