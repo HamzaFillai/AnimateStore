@@ -1,6 +1,11 @@
 @import "https://use.fontawesome.com/releases/v5.5.0/css/all.css";
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
 
+.component2 >.dis
+{
+  margin-bottom: -100px;
+}
+
 .component2 > .dis > .published >.switch {
   position: relative;
   display: inline-block;
@@ -63,8 +68,8 @@
 }
 
 .component2 div > .published > .switch > .slider.round:before {
-    border-radius: 50%;
-  }
+  border-radius: 50%;
+}
   
   .component2 >.dis > .published 
   {

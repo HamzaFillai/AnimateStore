@@ -5,6 +5,8 @@ import Publish from "./Publish"
 import Vector from "./Vector.png"
 import 'animate.css'
 import React from 'react';
+import '@shopify/polaris/dist/styles.css';
+
 
 function App() {
 
@@ -19,8 +21,6 @@ function App() {
   var classbutton ="btn";
 
   console.log(document.getElementById("eltbtn"));
-
- 
 
   const options = [
     //{label: 'Select animation', value: 'selectanim'},
@@ -91,8 +91,6 @@ const animateCSS = (element, animation, prefix = 'animate__') =>
     node.addEventListener('animationend', handleAnimationEnd, {once: true});
   });
 
-  var animateinfinite = "";
-
 const handleHover=()=>{
   if(value==='hover'){
     animateCSS('.btn', selected);
@@ -101,18 +99,14 @@ const handleHover=()=>{
 
 if(value==='always'){
   animateCSS('.btn', selected);
-  document.getElementById("eltbtn").classList.add("anim");
+  document.getElementById("eltbtn").className = "btn anim animate__animated animate__"+selected;
 }
 else
 {
-  
-    try
-    {
-      document.getElementById("eltbtn").classList.remove("anim");
-    }catch(err){}
+  try{
+    document.getElementById("eltbtn").className = "btn animate__animated animate__"+selected;
+  }catch(err){}
 }
-
-
 
   return (
     <div className="App">
@@ -157,7 +151,7 @@ else
             </Card>
           </Layout.Section>
           <Layout.Section twoThird>
-                <Card title={<Publish />} sectioned actions={[{content: <React.Fragment><Button onClick={toggleActive} primary>Save</Button></React.Fragment>}]}></Card>
+                <Card class="Polaris-Card__Section" title={<Publish />} sectioned actions={[{content: <React.Fragment><Button onClick={toggleActive} primary>Save</Button></React.Fragment>}]}></Card>
                 <Card sectioned title="Preview">
                   <TextContainer>
                     <SkeletonDisplayText size="extraLarge" />
