@@ -7,6 +7,7 @@ import 'animate.css'
 import React from 'react';
 import '@shopify/polaris/dist/styles.css';
 import Axios from "axios";
+import {pubb} from "./Publish"
 
 function App() {
   var trig = 0;
@@ -17,7 +18,7 @@ function App() {
   const handleSelectChange = useCallback((value) =>
   setSelected(value),
   []);
-
+  console.log(pubb)
   var classbutton ="btn";
 
   const options = [

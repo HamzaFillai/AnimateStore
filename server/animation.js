@@ -14,12 +14,11 @@ const db = mysql.createConnection({
 });
 
 app.post("/saving",(request,response)=>{
-    console.log(request.body.pub);
-    var p=request.body.pub;
+    console.log(request.body.pubb);
     console.log(request.body.name);
     console.log(request.body.trigger);
     console.log(request.body.speed);
-    console.log(p);
+
 })
 
 app.listen(8080, () => {

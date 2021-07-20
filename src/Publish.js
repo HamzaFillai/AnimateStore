@@ -1,18 +1,23 @@
 import React from 'react'
 import "./Publish.css"
+import Axios from "axios"
 
 export default function Publish() {
-    var pubb = "";
+    var pubb="";
     const myToggel = ()=>{
             if(document.getElementById("pub").innerHTML==="Unpublished")
             {
-                document.getElementById("pub").innerHTML="Published"
-                pubb = document.getElementById("pub").innerHTML;
+                document.getElementById("pub").innerHTML="Published"   
+                Axios.post("http://localhost:8080/saving",{
+                    pubb : document.getElementById("pub").innerHTML
+                })
             }
             else
             {
                 document.getElementById("pub").innerHTML="Unpublished"
-                pubb = document.getElementById("pub").innerHTML;
+                Axios.post("http://localhost:8080/saving",{
+                    pubb : document.getElementById("pub").innerHTML
+                })
             }
     }
 
@@ -32,3 +37,5 @@ export default function Publish() {
         </div>
     )
 }
+
+export var pubb ;
