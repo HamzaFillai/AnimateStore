@@ -6,11 +6,11 @@ import Vector from "./Vector.png"
 import 'animate.css'
 import React from 'react';
 import '@shopify/polaris/dist/styles.css';
-
+import Axios from "axios";
 
 function App() {
-
-
+  var trig = 0;
+  console.log()
   //Select Handlers
   const [selected, setSelected] = useState('bounce');
 
@@ -19,8 +19,6 @@ function App() {
   []);
 
   var classbutton ="btn";
-
-  console.log(document.getElementById("eltbtn"));
 
   const options = [
     //{label: 'Select animation', value: 'selectanim'},
@@ -66,7 +64,18 @@ function App() {
 //SaveButtonHandlers
 const [active, setActive] = useState(false);
 
-  const toggleActive = useCallback(() => setActive((active) => !active), []);
+  /*const toggleActive = useCallback(() => setActive((active) => !active), 
+  []);*/
+
+  const toggleActive = ()=>{
+    Axios.post("http://localhost:8080/saving",{
+      name : selected,
+      trigger : trig,
+      speed : speedValue/10,
+      publish : "pub"
+    });
+    setActive((active) => !active)
+  }
 
   const toastMarkup = active ? (
     <Toast content="Save Settings" onDismiss={toggleActive} />
@@ -98,13 +107,14 @@ const handleHover=()=>{
 }
 
 if(value==='always'){
+  trig = 1;
   animateCSS('.btn', selected);
   document.getElementById("eltbtn").className = "btn anim animate__animated animate__"+selected;
 }
 else
 {
   try{
-    document.getElementById("eltbtn").className = "btn animate__animated animate__"+selected;
+    document.getElementById("eltbtn").className = "btn";
   }catch(err){}
 }
 
@@ -151,7 +161,7 @@ else
             </Card>
           </Layout.Section>
           <Layout.Section twoThird>
-                <Card class="Polaris-Card__Section" title={<Publish />} sectioned actions={[{content: <React.Fragment><Button onClick={toggleActive} primary>Save</Button></React.Fragment>}]}></Card>
+                <Card title={<Publish />} sectioned actions={[{content: <React.Fragment><Button onClick={toggleActive} primary>Save</Button></React.Fragment>}]}></Card>
                 <Card sectioned title="Preview">
                   <TextContainer>
                     <SkeletonDisplayText size="extraLarge" />
