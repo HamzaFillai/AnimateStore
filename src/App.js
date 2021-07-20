@@ -7,22 +7,19 @@ import 'animate.css'
 import React from 'react';
 import '@shopify/polaris/dist/styles.css';
 import Axios from "axios";
-import {pubb} from "./Publish"
 
 function App() {
   var trig = 0;
-  console.log()
+  console.log(global.anim);
   //Select Handlers
   const [selected, setSelected] = useState('bounce');
 
   const handleSelectChange = useCallback((value) =>
   setSelected(value),
   []);
-  console.log(pubb)
   var classbutton ="btn";
 
   const options = [
-    //{label: 'Select animation', value: 'selectanim'},
     {label: 'Bounce', value: 'bounce'},
     {label: 'Flash', value: 'flash'},
     {label: 'Pulse', value: 'pulse'},
@@ -65,17 +62,17 @@ function App() {
 //SaveButtonHandlers
 const [active, setActive] = useState(false);
 
-  /*const toggleActive = useCallback(() => setActive((active) => !active), 
-  []);*/
-
   const toggleActive = ()=>{
     Axios.post("http://localhost:8080/saving",{
       name : selected,
       trigger : trig,
       speed : speedValue/10,
-      publish : "pub"
+      publish : global.anim
+    }).then((response)=>{
+      console.log("Nice");
+      Axios.delete("http://localhost:8080/delete");
+      setActive((active) => !active);
     });
-    setActive((active) => !active)
   }
 
   const toastMarkup = active ? (
